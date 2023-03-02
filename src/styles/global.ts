@@ -11,5 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     background: COLOR;
     color: COLOR;
     font-family: 'Nunito';
+    background: ${(props) => props.theme["blue-900"]};
+    color: ${(props) => props.theme["blue-300"]};
   }
 `
