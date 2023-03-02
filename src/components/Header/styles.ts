@@ -6,6 +6,7 @@ export const HeaderContainer = styled.header`
   height: 18.5rem;
   text-align: center;
   padding-top: 4rem;
+  margin-bottom: 12.25rem;
 
   white-space: nowrap;
   overflow: hidden;
