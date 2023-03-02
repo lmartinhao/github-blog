@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -7,11 +7,19 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.blue};
+  }
+
+
   body {
-    background: COLOR;
-    color: COLOR;
-    font-family: 'Nunito';
-    background: ${(props) => props.theme["blue-900"]};
-    color: ${(props) => props.theme["blue-300"]};
+    background: ${(props) => props.theme['blue-900']};
+    color: ${(props) => props.theme['blue-300']};
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body, input, textarea, button {
+    font: 400 1rem 'Nunito', sans-serif;
   }
 `

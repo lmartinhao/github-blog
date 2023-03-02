@@ -12,10 +12,10 @@ export const HeaderContainer = styled.header`
 `
 
 export const EffectRectangle = styled.div`
-  width: 891px;
-  height: 52px;
+  width: 55.688rem;
+  height: 3.481rem;
   left: calc(50% - 891px / 2 - 2.5px);
-  top: 235px;
+  top: 14.688rem;
 
   background: #14589c;
   filter: blur(106px);
@@ -23,34 +23,34 @@ export const EffectRectangle = styled.div`
 
 export const EffectImage1 = styled.div`
   position: absolute;
-  width: 409px;
-  height: 188px;
+  width: 25.563rem;
+  height: 11.75rem;
   left: 0px;
-  top: 70px;
+  top: 4.375rem;
 `
 export const EffectImage2 = styled.div`
   position: absolute;
-  width: 371px;
-  height: 236px;
-  left: 1067px;
-  top: 30px;
+  width: 23.188rem;
+  height: 14.75rem;
+  left: 66.688rem;
+  top: 1.875rem;
 `
 export const EffectCircle1 = styled.div`
   position: absolute;
-  width: 236px;
-  height: 236px;
-  left: -130px;
-  top: -96px;
+  width: 14.75rem;
+  height: 14.75rem;
+  left: -8.125rem;
+  top: -6rem;
 
   background: #14589c;
   filter: blur(200px);
 `
 export const EffectCircle2 = styled.div`
   position: absolute;
-  width: 155.25px;
-  height: 155.25px;
-  right: -15.43px;
-  top: -52.14px;
+  width: 9.703rem;
+  height: 9.703rem;
+  right: -0.964rem;
+  top: -3.259rem;
 
   background: #14589c;
   filter: blur(184px);
