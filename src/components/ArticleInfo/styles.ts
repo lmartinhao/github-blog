@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export const ProfileContainer = styled.div`
+export const ArticleInfoContainer = styled.div`
   width: 54rem;
-  height: 13.25rem;
+  height: 10.5rem;
   position: absolute;
 
   box-sizing: border-box;
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
 
   left: calc(50% - 864px / 2);
   top: 13rem;
@@ -16,32 +16,23 @@ export const ProfileContainer = styled.div`
   background: ${(props) => props.theme['blue-800']};
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 2rem 2.5rem;
+  padding: 2rem;
 
   h2 {
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 130%;
 
     color: ${(props) => props.theme['blue-100']};
   }
-
-  img {
-    width: 9.25rem;
-    height: 148px;
-    border-radius: 8px;
-  }
 `
 
-export const ProfileInfo = styled.div`
+export const CardLinks = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
-
-export const ProfileHeader = styled.div`
-  width: calc(54rem - 2rem - 5rem - 9.25rem);
-  display: flex;
+  flex-direction: row;
+  width: calc(54rem - 5rem);
   justify-content: space-between;
   align-items: center;
 `
@@ -53,7 +44,7 @@ export const GithubLink = styled(Link)`
   line-height: 160%;
 `
 
-export const ProfileStatsContainer = styled.div`
+export const ArticleStatsContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.5rem;

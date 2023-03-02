@@ -22,7 +22,7 @@ export function Profile() {
       <ProfileInfo>
         <ProfileHeader>
           <h2>Lola Martinhão</h2>
-          <GithubLink>
+          <GithubLink to={'https://github.com/lmartinhao'} target="_blank">
             <span>Github</span>{' '}
             <FontAwesomeIcon icon={faArrowAltCircleRight as IconProp} />
           </GithubLink>
