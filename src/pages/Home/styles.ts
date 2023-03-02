@@ -8,6 +8,7 @@ export const ArticlesContainer = styled.div`
 `
 
 export const ArticlesContainerHeader = styled.div`
+  margin-top: 7.25rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

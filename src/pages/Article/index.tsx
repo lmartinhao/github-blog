@@ -1,13 +1,16 @@
 import { ArticleInfo } from '../../components/ArticleInfo'
 import { Header } from '../../components/Header'
-import { ArticleContainer } from './styles'
+import { ArticleArea, ArticleContainer } from './styles'
 
 export function Article() {
   return (
     <ArticleContainer>
       <Header />
       <ArticleInfo />
-      <h1>Article</h1>
+
+      <ArticleArea>
+        <h1>Article</h1>
+      </ArticleArea>
     </ArticleContainer>
   )
 }
