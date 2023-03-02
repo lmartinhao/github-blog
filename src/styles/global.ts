@@ -10,5 +10,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: COLOR;
     color: COLOR;
+    font-family: 'Nunito';
   }
 `
