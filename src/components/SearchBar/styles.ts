@@ -7,8 +7,8 @@ export const SearchBarContainer = styled.form`
     padding: 12px 16px;
     margin-bottom: 3rem;
 
-    background: #040f1a;
-    /* Base/Border */
+    background: ${(props) => props.theme['gray-900']};
+    color: ${(props) => props.theme['blue-200']};
 
     border: 1px solid #1c2f41;
     border-radius: 6px;

@@ -11,7 +11,7 @@ export const ArticleCardContainer = styled.div`
   border-radius: 10px;
   padding: 2rem;
 
-  span {
+  .markdown {
     line-height: 160%;
     display: -webkit-box;
     -webkit-line-clamp: 4; /** número de linhas que você quer exibir */

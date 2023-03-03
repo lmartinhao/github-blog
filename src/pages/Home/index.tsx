@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { ArticleCard } from '../../components/ArticleCard'
 import { Header } from '../../components/Header'
 import { Profile } from '../../components/Profile'
-import { SearchBar } from '../../components/SearchBar'
+import { SearchForm } from '../../components/SearchBar'
 import { ArticlesContext } from '../../contexts/ArticlesContext'
 import {
   ArticlesArea,
@@ -13,8 +13,6 @@ import {
 
 export function Home() {
   const { articles } = useContext(ArticlesContext)
-
-  console.log(articles.items)
 
   return (
     <HomeContainer>
@@ -30,15 +28,19 @@ export function Home() {
               : `${articles.total_count} publicação`}
           </span>
         </ArticlesContainerHeader>
-        <SearchBar />
+        <SearchForm />
 
         <ArticlesArea>
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
+          {articles.items.map((article) => {
+            return (
+              <ArticleCard
+                key={article.id}
+                title={article.title}
+                body={article.body}
+                createdAt={article.created_at}
+              />
+            )
+          })}
         </ArticlesArea>
       </ArticlesContainer>
     </HomeContainer>

@@ -1,20 +1,33 @@
+import { useContext } from 'react'
+import { ArticlesContext } from '../../contexts/ArticlesContext'
 import { ArticleCardContainer, ArticleCardHeader } from './styles'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+import ReactMarkdown from 'react-markdown'
 
-export function ArticleCard() {
+interface ArticleCardProps {
+  title: string
+  body: string
+  createdAt: string
+}
+
+export function ArticleCard({ title, body, createdAt }: ArticleCardProps) {
+  const { articles } = useContext(ArticlesContext)
+
+  console.log(articles.items)
+
   return (
     <ArticleCardContainer>
       <ArticleCardHeader>
-        <h4>JavaScript data types and data structures</h4>
-        <span>Há 1 dia</span>
+        <h4>{title}</h4>
+        <span>
+          {formatDistanceToNow(new Date(createdAt), {
+            addSuffix: true,
+            locale: ptBR,
+          })}
+        </span>
       </ArticleCardHeader>
-
-      <span>
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn.
-      </span>
+      <ReactMarkdown className="markdown">{body}</ReactMarkdown>
     </ArticleCardContainer>
   )
 }

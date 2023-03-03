@@ -18,6 +18,7 @@ interface Article {
 
 interface ArticleContextType {
   articles: Article
+  fetchArticles: () => Promise<void>
 }
 
 interface ArticlesProviderProps {
@@ -32,9 +33,9 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
     total_count: 0,
   })
 
-  async function loadArticles() {
+  async function fetchArticles() {
     const response: Response = await fetch(
-      'https://api.github.com/search/issues?q=boas%20pr%C3%A1ticas%20repo:lmartinhao/github-blog',
+      'https://api.github.com/search/issues?q=repo:lmartinhao/github-blog',
       {
         headers: {
           Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
@@ -49,13 +50,13 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
   }
 
   useEffect(() => {
-    loadArticles().catch((error) => {
+    fetchArticles().catch((error) => {
       console.error(error)
     })
   }, [])
 
   return (
-    <ArticlesContext.Provider value={{ articles }}>
+    <ArticlesContext.Provider value={{ articles, fetchArticles }}>
       {children}
     </ArticlesContext.Provider>
   )
