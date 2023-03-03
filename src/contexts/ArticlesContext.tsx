@@ -18,7 +18,7 @@ interface Article {
 
 interface ArticleContextType {
   articles: Article
-  fetchArticles: () => Promise<void>
+  fetchArticles: (query?: string) => Promise<void>
 }
 
 interface ArticlesProviderProps {
@@ -33,15 +33,27 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
     total_count: 0,
   })
 
-  async function fetchArticles() {
-    const response: Response = await fetch(
-      'https://api.github.com/search/issues?q=repo:lmartinhao/github-blog',
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+  async function fetchArticles(query?: string) {
+    let response: Response
+    if (query) {
+      response = await fetch(
+        `https://api.github.com/search/issues?q=repo:lmartinhao/github-blog ${query}`,
+        {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+          },
         },
-      },
-    )
+      )
+    } else {
+      response = await fetch(
+        'https://api.github.com/search/issues?q=repo:lmartinhao/github-blog',
+        {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+          },
+        },
+      )
+    }
     const data = await response.json()
     setArticles({
       total_count: data.total_count,

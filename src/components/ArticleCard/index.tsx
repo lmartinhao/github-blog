@@ -1,5 +1,3 @@
-import { useContext } from 'react'
-import { ArticlesContext } from '../../contexts/ArticlesContext'
 import { ArticleCardContainer, ArticleCardHeader } from './styles'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
@@ -12,10 +10,6 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ title, body, createdAt }: ArticleCardProps) {
-  const { articles } = useContext(ArticlesContext)
-
-  console.log(articles.items)
-
   return (
     <ArticleCardContainer>
       <ArticleCardHeader>
