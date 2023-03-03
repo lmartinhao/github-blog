@@ -12,40 +12,62 @@ import {
   ProfileStatsContainer,
 } from './styles'
 
-import BlankProfile from '../../assets/blank-profile.webp'
+import { useEffect, useState } from 'react'
+
+interface ProfileData {
+  login: string
+  name: string
+  bio: string
+  avatar_url: string
+  html_url: string
+  followers: number
+  company: string
+}
 
 export function Profile() {
+  const [profile, setProfile] = useState<ProfileData | null>(null)
+
+  async function loadProfileInfo() {
+    const response: Response = await fetch(
+      'https://api.github.com/users/lmartinhao',
+    )
+    const data: ProfileData = await response.json()
+
+    console.log(data)
+    setProfile(data)
+  }
+
+  useEffect(() => {
+    loadProfileInfo().catch((error) => {
+      console.error(error)
+    })
+  }, [])
+
   return (
     <ProfileContainer>
-      <img src={BlankProfile} alt="" />
+      <img src={profile?.avatar_url} alt="" />
 
       <ProfileInfo>
         <ProfileHeader>
-          <h2>Lola Martinhão</h2>
-          <GithubLink to={'https://github.com/lmartinhao'} target="_blank">
+          <h2>{profile?.name}</h2>
+          <GithubLink to={profile?.html_url || ''} target="_blank">
             <span>Github</span>{' '}
             <FontAwesomeIcon icon={faArrowAltCircleRight as IconProp} />
           </GithubLink>
         </ProfileHeader>
-        <div>
-          {' '}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et
-          porta nunc. Proin eu nisl molestie, aliquet turpis ac, vulputate
-          velit. Nam faucibus neque massa, eu lobortis velit rhoncus vel. Fusce
-          eu consequat orci. Nulla nec ultricies nisl.
-        </div>
+        <div> {profile?.bio}</div>
         <ProfileStatsContainer>
           <div>
             <FontAwesomeIcon icon={faGithub as IconProp} />{' '}
-            <span>lmartinhao</span>
+            <span>{profile?.login}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faBuilding as IconProp} />{' '}
-            <span>Freelancer</span>
+            <span>{profile?.company}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faUserGroup as IconProp} />{' '}
-            <span>15 seguidores</span>
+            <span>{profile?.followers} seguidores</span>
           </div>
         </ProfileStatsContainer>
       </ProfileInfo>
