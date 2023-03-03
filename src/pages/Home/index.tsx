@@ -1,7 +1,9 @@
+import { useContext } from 'react'
 import { ArticleCard } from '../../components/ArticleCard'
 import { Header } from '../../components/Header'
 import { Profile } from '../../components/Profile'
 import { SearchBar } from '../../components/SearchBar'
+import { ArticlesContext } from '../../contexts/ArticlesContext'
 import {
   ArticlesArea,
   ArticlesContainer,
@@ -10,6 +12,10 @@ import {
 } from './styles'
 
 export function Home() {
+  const { articles } = useContext(ArticlesContext)
+
+  console.log(articles.items)
+
   return (
     <HomeContainer>
       <Header />
@@ -18,7 +24,11 @@ export function Home() {
       <ArticlesContainer>
         <ArticlesContainerHeader>
           <h3>Publicações</h3>
-          <span>6 publicações</span>
+          <span>
+            {articles.total_count > 1
+              ? `${articles.total_count} publicações`
+              : `${articles.total_count} publicação`}
+          </span>
         </ArticlesContainerHeader>
         <SearchBar />
 

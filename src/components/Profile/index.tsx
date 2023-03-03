@@ -32,8 +32,6 @@ export function Profile() {
       'https://api.github.com/users/lmartinhao',
     )
     const data: ProfileData = await response.json()
-
-    console.log(data)
     setProfile(data)
   }
 
