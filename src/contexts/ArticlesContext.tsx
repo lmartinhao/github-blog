@@ -37,7 +37,7 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
       'https://api.github.com/search/issues?q=boas%20pr%C3%A1ticas%20repo:lmartinhao/github-blog',
       {
         headers: {
-          Authorization: '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',
+          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
         },
       },
     )
