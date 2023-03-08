@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { formatDistanceToNow } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
 
 import {
   faCalendarDay,
@@ -17,18 +15,16 @@ import {
   CardLinks,
   GithubLink,
 } from './styles'
+import { useContext } from 'react'
+import { ArticlesContext } from '../../contexts/ArticlesContext'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
-interface ArticleInfoProps {
-  author: string | undefined
-  numberOfComments: number
-  createdAt: string
-}
+export function ArticleInfo() {
+  const { selectedArticle } = useContext(ArticlesContext)
 
-export function ArticleInfo({
-  author,
-  numberOfComments,
-  createdAt,
-}: ArticleInfoProps) {
+  const postDate = new Date(selectedArticle.created_at)
+
   return (
     <ArticleInfoContainer>
       <CardLinks>
@@ -43,15 +39,21 @@ export function ArticleInfo({
       <h2>JavaScript data types and data structures</h2>
       <ArticleStatsContainer>
         <div>
-          <FontAwesomeIcon icon={faGithub as IconProp} /> <span>{author}</span>
+          <FontAwesomeIcon icon={faGithub as IconProp} />{' '}
+          <span>{selectedArticle.user?.login}</span>
         </div>
         <div>
           <FontAwesomeIcon icon={faCalendarDay as IconProp} />{' '}
-          <span>{createdAt}</span>
+          <span>
+            {formatDistanceToNow(postDate, {
+              addSuffix: true,
+              locale: ptBR,
+            })}
+          </span>
         </div>
         <div>
           <FontAwesomeIcon icon={faComment as IconProp} />{' '}
-          <span>{numberOfComments} comentários</span>
+          <span>{selectedArticle.comments} comentários</span>
         </div>
       </ArticleStatsContainer>
     </ArticleInfoContainer>

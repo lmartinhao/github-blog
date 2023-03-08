@@ -41,7 +41,7 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
     title: '',
     body: '',
     comments: 0,
-    created_at: '',
+    created_at: new Date().toISOString(),
     number: 0,
   })
 

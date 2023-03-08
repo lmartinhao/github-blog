@@ -17,19 +17,14 @@ export function Article() {
         console.error(error)
       })
     }
-  }, [issueNumber, fetchArticle])
+  }, [])
 
   return (
     <ArticleContainer>
       <Header />
-      <ArticleInfo
-        author={selectedArticle.user?.login}
-        numberOfComments={selectedArticle.comments}
-        createdAt={selectedArticle.created_at}
-      />
+      <ArticleInfo />
 
       <ArticleArea>
-        <h1>{selectedArticle.title}</h1>
         <ReactMarkdown>{selectedArticle.body}</ReactMarkdown>
       </ArticleArea>
     </ArticleContainer>
