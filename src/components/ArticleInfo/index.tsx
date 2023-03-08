@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import {
-  faUserGroup,
-  faBuilding,
+  faCalendarDay,
   faArrowLeft,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons'
@@ -15,7 +18,17 @@ import {
   GithubLink,
 } from './styles'
 
-export function ArticleInfo() {
+interface ArticleInfoProps {
+  author: string | undefined
+  numberOfComments: number
+  createdAt: string
+}
+
+export function ArticleInfo({
+  author,
+  numberOfComments,
+  createdAt,
+}: ArticleInfoProps) {
   return (
     <ArticleInfoContainer>
       <CardLinks>
@@ -30,16 +43,15 @@ export function ArticleInfo() {
       <h2>JavaScript data types and data structures</h2>
       <ArticleStatsContainer>
         <div>
-          <FontAwesomeIcon icon={faGithub as IconProp} />{' '}
-          <span>lmartinhao</span>
+          <FontAwesomeIcon icon={faGithub as IconProp} /> <span>{author}</span>
         </div>
         <div>
-          <FontAwesomeIcon icon={faBuilding as IconProp} />{' '}
-          <span>Freelancer</span>
+          <FontAwesomeIcon icon={faCalendarDay as IconProp} />{' '}
+          <span>{createdAt}</span>
         </div>
         <div>
-          <FontAwesomeIcon icon={faUserGroup as IconProp} />{' '}
-          <span>15 seguidores</span>
+          <FontAwesomeIcon icon={faComment as IconProp} />{' '}
+          <span>{numberOfComments} comentários</span>
         </div>
       </ArticleStatsContainer>
     </ArticleInfoContainer>
