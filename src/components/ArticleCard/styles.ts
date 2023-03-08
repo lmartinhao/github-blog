@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
-export const ArticleCardContainer = styled(Link)`
+export const ArticleCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -14,6 +13,7 @@ export const ArticleCardContainer = styled(Link)`
   border-radius: 10px;
   padding: 2rem;
   margin-bottom: 2rem;
+  cursor: pointer;
 
   .markdown {
     line-height: 160%;

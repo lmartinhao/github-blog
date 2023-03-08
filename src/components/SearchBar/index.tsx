@@ -18,7 +18,6 @@ export function SearchForm() {
   })
 
   function handleSearchArticles(data: SearchFormInputs) {
-    console.log(data)
     fetchArticles(data.query)
   }
 

@@ -21,7 +21,9 @@ interface Article {
 
 interface ArticleContextType {
   articles: Article
+  selectedArticle: ArticleData
   fetchArticles: (query?: string) => Promise<void>
+  fetchArticle: (issueNumber: number) => Promise<void>
 }
 
 interface ArticlesProviderProps {
@@ -35,6 +37,26 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
     items: [],
     total_count: 0,
   })
+  const [selectedArticle, setSelectedArticle] = useState<ArticleData>({
+    title: '',
+    body: '',
+    comments: 0,
+    created_at: '',
+    number: 0,
+  })
+
+  async function fetchArticle(issueNumber: number) {
+    const response = await api.get(
+      `repos/lmartinhao/github-blog/issues/${issueNumber}`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+        },
+      },
+    )
+    const data = response.data
+    setSelectedArticle(data)
+  }
 
   async function fetchArticles(query?: string) {
     let response: AxiosResponse
@@ -75,7 +97,9 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
   }, [])
 
   return (
-    <ArticlesContext.Provider value={{ articles, fetchArticles }}>
+    <ArticlesContext.Provider
+      value={{ articles, selectedArticle, fetchArticles, fetchArticle }}
+    >
       {children}
     </ArticlesContext.Provider>
   )

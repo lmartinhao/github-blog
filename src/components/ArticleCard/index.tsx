@@ -2,6 +2,7 @@ import { ArticleCardContainer, ArticleCardHeader } from './styles'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import ReactMarkdown from 'react-markdown'
+import { useNavigate } from 'react-router-dom'
 
 interface ArticleCardProps {
   title: string
@@ -16,8 +17,13 @@ export function ArticleCard({
   createdAt,
   number,
 }: ArticleCardProps) {
+  const navigate = useNavigate()
+  function handleClickArticleCard() {
+    navigate(`/articles/${number}`)
+  }
+
   return (
-    <ArticleCardContainer to={`/articles/${number}`}>
+    <ArticleCardContainer onClick={handleClickArticleCard}>
       <ArticleCardHeader>
         <h4>{title}</h4>
         <span>
