@@ -38,6 +38,7 @@ export function Home() {
                 title={article.title}
                 body={article.body}
                 createdAt={article.created_at}
+                number={article.number}
               />
             )
           })}

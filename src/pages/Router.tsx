@@ -5,8 +5,9 @@ import { Home } from './Home/index'
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/articles/1" element={<Article />} />
+      <Route path="" element={<Home />} />
+
+      <Route path="articles/:issueNumber" element={<Article />} />
     </Routes>
   )
 }

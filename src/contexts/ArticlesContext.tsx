@@ -3,14 +3,15 @@ import { api } from '../lib/axios'
 import { AxiosResponse } from 'axios'
 
 interface ArticleData {
-  id: number
+  id?: number
   title: string
   body: string
-  user: {
+  user?: {
     login: string
   }
   comments: number
   created_at: string
+  number: number
 }
 
 interface Article {

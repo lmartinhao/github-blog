@@ -7,11 +7,17 @@ interface ArticleCardProps {
   title: string
   body: string
   createdAt: string
+  number: number
 }
 
-export function ArticleCard({ title, body, createdAt }: ArticleCardProps) {
+export function ArticleCard({
+  title,
+  body,
+  createdAt,
+  number,
+}: ArticleCardProps) {
   return (
-    <ArticleCardContainer>
+    <ArticleCardContainer to={`/articles/${number}`}>
       <ArticleCardHeader>
         <h4>{title}</h4>
         <span>

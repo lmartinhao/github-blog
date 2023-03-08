@@ -1,15 +1,19 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-export const ArticleCardContainer = styled.div`
+export const ArticleCardContainer = styled(Link)`
   display: flex;
   flex-direction: column;
+  text-decoration: none;
   gap: 1.25rem;
-  width: 416px;
-  height: 260px;
+  width: 26rem;
+  height: 16.25rem;
+  color: ${(props) => props.theme['blue-300']};
 
-  background: #112131;
+  background: ${(props) => props.theme['blue-700']};
   border-radius: 10px;
   padding: 2rem;
+  margin-bottom: 2rem;
 
   .markdown {
     line-height: 160%;
@@ -22,12 +26,15 @@ export const ArticleCardContainer = styled.div`
 `
 
 export const ArticleCardHeader = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
 
   h4 {
-    max-width: 17.688rem;
+    width: 17rem;
     font-weight: 700;
     font-size: 20px;
     line-height: 160%;
@@ -35,6 +42,7 @@ export const ArticleCardHeader = styled.div`
   }
 
   span {
+    width: 6rem;
     font-weight: 400;
     font-size: 14px;
     color: #7b96b2;
