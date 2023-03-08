@@ -52,5 +52,6 @@ export const ArticleStatsContainer = styled.div`
 
   svg {
     color: ${(props) => props.theme['blue-500']};
+    margin-right: 0.3rem;
   }
 `
