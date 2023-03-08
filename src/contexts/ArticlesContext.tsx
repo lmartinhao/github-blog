@@ -1,4 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
+import { api } from '../lib/axios'
+import { AxiosResponse } from 'axios'
 
 interface ArticleData {
   id: number
@@ -34,31 +36,35 @@ export function ArticlesProvider({ children }: ArticlesProviderProps) {
   })
 
   async function fetchArticles(query?: string) {
-    let response: Response
-    if (query) {
-      response = await fetch(
-        `https://api.github.com/search/issues?q=repo:lmartinhao/github-blog ${query}`,
-        {
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+    let response: AxiosResponse
+    try {
+      if (query) {
+        response = await api.get(
+          `search/issues?q=repo:lmartinhao/github-blog ${query}`,
+          {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+            },
           },
-        },
-      )
-    } else {
-      response = await fetch(
-        'https://api.github.com/search/issues?q=repo:lmartinhao/github-blog',
-        {
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+        )
+      } else {
+        response = await api.get(
+          'search/issues?q=repo:lmartinhao/github-blog',
+          {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+            },
           },
-        },
-      )
+        )
+      }
+      const data = response.data
+      setArticles({
+        total_count: data.total_count,
+        items: data.items,
+      })
+    } catch (error) {
+      console.error(error)
     }
-    const data = await response.json()
-    setArticles({
-      total_count: data.total_count,
-      items: data.items,
-    })
   }
 
   useEffect(() => {
