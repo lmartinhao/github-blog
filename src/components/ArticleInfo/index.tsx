@@ -36,7 +36,7 @@ export function ArticleInfo() {
           <FontAwesomeIcon icon={faArrowAltCircleRight as IconProp} />
         </GithubLink>
       </CardLinks>
-      <h2>JavaScript data types and data structures</h2>
+      <h2>{selectedArticle.title}</h2>
       <ArticleStatsContainer>
         <div>
           <FontAwesomeIcon icon={faGithub as IconProp} />{' '}
